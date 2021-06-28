@@ -4,16 +4,19 @@ pure UEFI boot, not legacy or csm! gk41 mini pc,cpu:J4125 gpu:UHD600. 对于纯U
 
 PVE6.3直通核显前主机HOST操作，与网上通用教程一致：
 
-A.首先编辑GRUB配置文件：
-vi /etc/default/grub (覆盖同一行)
+**这里使用nano编辑器，没有的可以安装一下**
+sudo apt-get install nano
+
+**A.首先编辑GRUB配置文件：**
+nano /etc/default/grub (覆盖同一行)
 
    GRUB_CMDLINE_LINUX_DEFAULT="quiet kvm.ignore_msrs=1 intel_iommu=on iommu=pt video=efifb:off vfio-pci.ids=8086:3185,8086:3198 modprobe.blacklist=i915,snd_hda_intel,snd_sof_pci,mei_me,snd_hda_codec_hdmi,snd_hda_codec_realtek"
    
 更新GRUB：
   update-grub
   
-B.添加所需的系统模块（驱动）：
-vi /etc/modules
+**B.添加所需的系统模块（驱动）：**
+nano /etc/modules
 
 vfio
 vfio_iommu_type1
